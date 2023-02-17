@@ -39,6 +39,26 @@ public:
     return glfwGetKey(m_window, static_cast<int>(key)) == GLFW_PRESS;
   }
 
+  bool press_mouse_button(mouse_button_id mouse_button) const noexcept {
+    return glfwGetMouseButton(m_window, static_cast<int>(mouse_button)) == GLFW_PRESS;
+  }
+
+  auto get_cursor_pos() const noexcept {
+    double x, y;
+    glfwGetCursorPos(m_window, &x, &y);
+    return std::make_pair(x, y);
+  }
+
+  void set_cursor_pos(double x, double y) noexcept {
+    glfwSetCursorPos(m_window, x, y);
+  }
+
+  auto get_size() noexcept {
+    int width, height;
+    glfwGetWindowSize(m_window, &width, &height);
+    return std::make_pair(width, height);
+  }
+
   using fcn_framebuffer_size_callback = void(*)(GLFWwindow*, int, int);
   fcn_framebuffer_size_callback set_framebuffer_size_callback(fcn_framebuffer_size_callback fcn) noexcept {
     return glfwSetFramebufferSizeCallback(m_window, fcn);

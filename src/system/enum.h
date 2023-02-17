@@ -46,6 +46,16 @@ enum class key_id {
   key_caps_lock = GLFW_KEY_CAPS_LOCK,
 };
 
+/**
+ * MOUSE BUTTON ID
+ */
+
+enum class mouse_button_id {
+  button_left = GLFW_MOUSE_BUTTON_LEFT,
+  button_right = GLFW_MOUSE_BUTTON_RIGHT,
+  button_middle = GLFW_MOUSE_BUTTON_MIDDLE,
+};
+
 }
 
 #endif
