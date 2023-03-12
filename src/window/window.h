@@ -35,12 +35,20 @@ public:
   void set_should_close(bool value) noexcept { glfwSetWindowShouldClose(m_window, value); }
   bool should_close() const noexcept { return glfwWindowShouldClose(m_window); }
 
-  bool press_key(key_id key) const noexcept {
+  bool press_key(key_token key) const noexcept {
     return glfwGetKey(m_window, static_cast<int>(key)) == GLFW_PRESS;
   }
 
-  bool press_mouse_button(mouse_button_id mouse_button) const noexcept {
+  bool release_key(key_token key) const noexcept {
+    return glfwGetKey(m_window, static_cast<int>(key)) == GLFW_RELEASE;
+  }
+
+  bool press_mouse_button(mouse_button_token mouse_button) const noexcept {
     return glfwGetMouseButton(m_window, static_cast<int>(mouse_button)) == GLFW_PRESS;
+  }
+
+  bool release_mouse_button(mouse_button_token mouse_button) const noexcept {
+    return glfwGetMouseButton(m_window, static_cast<int>(mouse_button)) == GLFW_RELEASE;
   }
 
   auto get_cursor_pos() const noexcept {
@@ -53,14 +61,16 @@ public:
     glfwSetCursorPos(m_window, x, y);
   }
 
-  auto get_size() noexcept {
+  auto get_size() const noexcept {
     int width, height;
     glfwGetWindowSize(m_window, &width, &height);
     return std::make_pair(width, height);
   }
 
-  using fcn_framebuffer_size_callback = void(*)(GLFWwindow*, int, int);
-  fcn_framebuffer_size_callback set_framebuffer_size_callback(fcn_framebuffer_size_callback fcn) noexcept {
+  static auto get_time() noexcept { return glfwGetTime(); }
+  static auto get_timer_frequency() noexcept { return glfwGetTimerFrequency(); }
+  static auto get_timer_value() noexcept { return glfwGetTimerValue(); }
+
     return glfwSetFramebufferSizeCallback(m_window, fcn);
   }
 
