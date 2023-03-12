@@ -11,5 +11,8 @@ window::window(int width, int height, const std::string& title) {
   }
 }
 
+window::~window() {
+  glfwDestroyWindow(m_window);
+}
 
 }

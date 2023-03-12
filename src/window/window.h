@@ -16,7 +16,7 @@ public:
   window() = delete;
   window(int width, int height, const std::string& title);
 
-  ~window() = default;
+  ~window();
 
   window(const window&) = delete;
   window& operator=(const window&) = delete;
